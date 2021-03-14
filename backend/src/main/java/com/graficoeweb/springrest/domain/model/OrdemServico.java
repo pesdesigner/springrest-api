@@ -10,13 +10,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.validation.Valid;
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import javax.validation.groups.ConvertGroup;
-import javax.validation.groups.Default;
-
-import com.graficoeweb.springrest.domain.ValidationGroups;
 
 @Entity
 public class OrdemServico {
@@ -25,23 +18,16 @@ public class OrdemServico {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
-	@Valid
-	@ConvertGroup(from = Default.class, to = ValidationGroups.ClienteId.class)
-	@NotNull
 	@ManyToOne
 	private Cliente cliente;
 	
-	@NotBlank
 	private String descricao;
-	
-	@NotNull
 	private BigDecimal preco;
 	
 	@Enumerated(EnumType.STRING)
 	private StatusOrdemServico status;
 	
 	private OffsetDateTime dataAbertura;
-	
 	private OffsetDateTime dataFinalizacao;
 	
 	public Long getId() {
